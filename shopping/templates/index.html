@@ -28,8 +28,13 @@
     <div class="head_main_top">
         <div class="head_main_topM">
             <div class="head_main_topM_left">
-                <a href="entry.html">登录</a>
-                <a href="/register/">免费注册</a>
+                {% if phone %}
+                    {{ phone }}
+                    <a href="/logout/">退出</a>
+                {% else %}
+                    <a href="/login/">登录</a>
+                    <a href="/register/">免费注册</a>
+                {% endif %}
                 <a href="#"><img src="{% static 'img/headshouji.png' %}">手机版</a>
             </div>
             <div class="head_main_topM_right">
