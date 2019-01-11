@@ -61,7 +61,7 @@ def login(request):
         return render(request,'login.html')
     elif request.method == 'POST':
         phone = request.POST.get('phone')
-        password = request.POST.get('password')
+        password = generate_passwd(request.POST.get('password'))
         users = User.objects.filter(phone=phone).filter(password=password)
         if users.count():
             response = redirect('lcc:index')
