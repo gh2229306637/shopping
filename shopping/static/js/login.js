@@ -6,7 +6,7 @@ $(function () {
 			var isReg =reg.test($(this).val());
 			if(!isReg) {
                 $(this).css("border", "2px solid red")
-                $(this).next("span").text("手机格式有误，请重新输入");
+                $(this).next("span").text("*手机号格式有误，请重新输入");
             }else{
 			    $(this).next("span").text("");
             }

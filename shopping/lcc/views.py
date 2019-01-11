@@ -37,11 +37,17 @@ def register(request):
     if request.method == 'GET':
         return render(request,'register.html')
     elif request.method == 'POST':
-
+        users = User.objects.all()
         user = User()
+        phone = request.POST.get('phone')
+        for u in users:
+            if u.phone == phone:
+                msg = '*该手机号已被注册，请登录'
+                return render(request,'register.html',{'msg':msg})
+
         user.phone = request.POST.get('phone')
         user.password = generate_passwd(request.POST.get('password'))
-        user.code = 123456
+        user.code = 0
         user.token = generate_token()
         user.save()
         response = redirect('lcc:index')
@@ -63,6 +69,7 @@ def login(request):
         phone = request.POST.get('phone')
         password = generate_passwd(request.POST.get('password'))
         users = User.objects.filter(phone=phone).filter(password=password)
+        #如果匹配失败阻止表单提交
         if users.count():
             response = redirect('lcc:index')
             user = users.first()
