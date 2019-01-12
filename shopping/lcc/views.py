@@ -6,10 +6,12 @@ import time
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpRequest
 
-from lcc.models import User
+from lcc.models import User, Wheel
 
 
 def index(request):
+    wheels = Wheel.objects.all()
+
     token = request.session.get('token')
     users = User.objects.filter(token=token)
     if users.count():
@@ -17,7 +19,7 @@ def index(request):
         phone = user.phone
     else:
         phone = None
-    return render(request,'index.html',{'phone':phone})
+    return render(request,'index.html',{'phone':phone,'wheels':wheels})
 
 
 def generate_token():
@@ -79,3 +81,7 @@ def login(request):
         else:
             err = '用户名或密码错误，请重新登录！'
             return render(request,'login.html',{'err':err})
+
+
+def detail(request):
+    return render(request,'detail.html')

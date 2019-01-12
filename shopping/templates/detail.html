@@ -1,14 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>AVENT/新安怡 自然原生新生儿防胀气宽口径玻璃奶瓶 240ml-奶瓶/奶嘴-AVENT/新安怡-嗨淘全球</title>
-		<link rel="stylesheet" type="text/css" href="css/basic.css"/>
-		<link rel="stylesheet" type="text/css" href="css/detail.css"/>
-		<script src="js/jquery-1.12.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/basic.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/detail.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}"/>
+		<script src="{% static 'js/jquery-1.12.0.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/detail.js' %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static 'js/shell.js' %}"></script>
 	</head> 
 	<body>
 		<div class="head_main"> 
@@ -18,7 +20,7 @@
 					<div class="head_main_topM_left">
 						<a href="#">登录</a>
 						<a href="#">免费注册</a>
-						<a href="#"><img src="img/headshouji.png"/>手机版</a>
+						<a href="#"><img src="js/detail.js"/>手机版</a>
 					</div>
 					<div class="head_main_topM_right">
 						<a href="#">我的订单</a>
