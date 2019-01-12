@@ -9,3 +9,7 @@ class Wheel(models.Model):
     img = models.CharField(max_length=500)
     name = models.CharField(max_length=50)
     trackid = models.CharField(max_length=20)
+
+class GoodsList(models.Model):
+    img = models.CharField(max_length=500)
+    name = models.CharField(max_length=50)

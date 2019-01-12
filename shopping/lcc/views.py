@@ -6,12 +6,12 @@ import time
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpRequest
 
-from lcc.models import User, Wheel
+from lcc.models import User, Wheel,GoodsList
 
 
 def index(request):
     wheels = Wheel.objects.all()
-
+    goodslists = GoodsList.objects.all()
     token = request.session.get('token')
     users = User.objects.filter(token=token)
     if users.count():
@@ -19,7 +19,7 @@ def index(request):
         phone = user.phone
     else:
         phone = None
-    return render(request,'index.html',{'phone':phone,'wheels':wheels})
+    return render(request,'index.html',{'phone':phone,'wheels':wheels,'goodslists':goodslists})
 
 
 def generate_token():

@@ -10,7 +10,6 @@
 		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/detail.js' %}" type="text/javascript" charset="utf-8"></script>
-        <script src="{% static 'js/shell.js' %}"></script>
 	</head> 
 	<body>
 		<div class="head_main"> 
@@ -20,7 +19,7 @@
 					<div class="head_main_topM_left">
 						<a href="#">登录</a>
 						<a href="#">免费注册</a>
-						<a href="#"><img src="js/detail.js"/>手机版</a>
+						<a href="#"><img src="{% static 'img/headshouji.png' %}"/>手机版</a>
 					</div>
 					<div class="head_main_topM_right">
 						<a href="#">我的订单</a>
@@ -38,8 +37,8 @@
 			<div class="head_main_middle">
 				<div class="head_main_middleM">
 					<div class="head_main_middleM_left">
-						<a href="#"><img src="img/search.png"/></a>
-						<img  src="img/hitao.png"/>
+						<a href="#"><img src="{% static 'img/search.png' %}"/></a>
+						<img  src="{% static 'img/hitao.png' %}"/>
 					</div>
 					<div class="head_main_middleM_right">
 						<input type="text"id="input1" placeholder="搜索商品"/><input type="button"  id="input2" value="搜索" />
@@ -57,7 +56,7 @@
 						<span><a href="index.html">首页</a></span><span><a href="#">全球特卖</a></span>
 					</div>
 					<div class="head_main_bottomM_right">
-						<span><img src="img/xiala.png"/></span>
+						<span><img src="{% static 'img/xiala.png' %}"/></span>
 						<span>查看分类</span>
 					</div>
 				</div>
@@ -714,19 +713,19 @@
 				<div class="concent_topM_bottom">
 					<div class="concent_topM_bottom_l">
 						<div class="concent_topM_bottom_l_title">
-							<img src=""/><span>[特卖] AVENT/新安怡 自然原生新生儿防胀气宽口径玻璃奶瓶 240ml</span>
+							<img src="{% static 'img/naiping.jpg' %}"/><span>[特卖] AVENT/新安怡 自然原生新生儿防胀气宽口径玻璃奶瓶 240ml</span>
 						</div>
 						<div id="fangdajing">
 							<div id="fangdajing_l">
-								
+
 							</div>
-							<img class="fangdajing" src=""/>
+							<img class="fangdajing" src="{% static 'img/img_list5/1.jpg' %}"/>
 						</div>
-						<img class="erweima" src="img/erweima.png"/>
-						<p>分享<a href="#"><img class="weixin" src="img/lianjie0.png"/></a><a href="#"><img src="img/lianjie1.png"/></a><a href="#"><img src="img/lianjie2.png"/></a></p>
+						<img class="erweima" src="{% static 'img/erweima.png' %}"/>
+						<p>分享<a href="#"><img class="weixin" src="{% static 'img/lianjie0.png' %}"/></a><a href="#"><img src="{% static 'img/lianjie1.png' %}"/></a><a href="#"><img src="{% static 'img/lianjie2.png' %}"/></a></p>
 					</div>
 					<div id="fangdajing_r">
-						<img src=""/>
+
 					</div>
 					<div class="concent_topM_bottom_r">
 						<div class="shizhong">
@@ -771,14 +770,14 @@
 						<ul>
 							<li>
 								<a href="#">
-									<img src="img/tuijian0.jpg"/>
+									<img src="{% static 'img/tuijian0.jpg' %}"/>
 									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
 									<b>$99.00</b>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img src="img/tuijian0.jpg"/>
+									<img src="{% static 'img/tuijian0.jpg' %}"/>
 									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
 									<b>$99.00</b>
 								</a>
@@ -788,28 +787,28 @@
 						<ul>
 							<li>
 								<a href="#">
-									<img src="img/tuijian0.jpg"/>
+									<img src="{% static 'img/tuijian0.jpg' %}"/>
 									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
 									<b>$99.00</b>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img src="img/tuijian0.jpg"/>
+									<img src="{% static 'img/tuijian0.jpg' %}"/>
 									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
 									<b>$99.00</b>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img src="img/tuijian0.jpg"/>
+									<img src="{% static 'img/tuijian0.jpg' %}"/>
 									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
 									<b>$99.00</b>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<img src="img/tuijian0.jpg"/>
+									<img src="{% static 'img/tuijian0.jpg' %}"/>
 									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
 									<b>$99.00</b>
 								</a>
@@ -826,10 +825,10 @@
 						
 					</div>
 					<div class="groomM_right_b">
-						<img src="img/jieshao_t.jpg"/>
+						<img src="{% static 'img/jieshao_t.jpg' %}"/>
 						<h4>产品参数   PRODUCT PARAMETERY</h4>
 						<dl>
-							<dt><img src=""/></dt>
+							<dt></dt>
 							<dd>
 								<span>保质期:</span>3年
 							</dd>
@@ -861,7 +860,7 @@
 					</div>
 					<div class="criticism ">
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -875,7 +874,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -889,7 +888,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -903,7 +902,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -917,7 +916,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -931,7 +930,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -945,7 +944,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -959,7 +958,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -973,7 +972,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -987,7 +986,7 @@
 							</div>
 						</div>
 						<div class="criticism_con">
-							<img src="img/img_list9/touxiang.jpg"/>
+							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
 							<div class="criticism_con_right">
 								<div class="criticism_con_rightT">
 									<span>舒霖</span><span>2016-08-08 16:23</span>
@@ -1045,7 +1044,7 @@
 						</dl>
 						<dl >
 							<dt>手机嗨淘全球</dt>
-							<dd class="last_dd" ><img src="img/foot.png"/></dd>
+							<dd class="last_dd" ><img src="{% static 'img/foot.png' %}"/></dd>
 						</dl>
 						<div class="clear">
 							
@@ -1056,7 +1055,7 @@
 			<div class="foot_middle">
 				<div class="foot_middleM">
 					<div class="foot_middleM_left">
-						<span><img src="img/dianhua.png"/></span>
+						<span><img src="{% static 'img/dianhua.png' %}"/></span>
 						<span>4008-006-006</span>
 					</div>
 					<div class="foot_middleM_right">
@@ -1082,11 +1081,11 @@
 						<p>Copyright © 2010 - 2016, 版权所有 HITAO.TOP    湘ICP备10012668号-3  嗨淘全球网　|　<a href="#">营业执照</a></p>
 					</div>
 					<div class="foot_bottomM_right">
-						<a href="#"><img src="img/foot0.png"/></a>
-						<a href="#"><img src="img/foot1.png"/></a>
-						<a href="#"><img src="img/foot2.png"/></a>
-						<a href="#"><img src="img/foot3.png"/></a>
-						<a href="#"><img src="img/foot4.png"/></a>
+						<a href="#"><img src="{% static 'img/foot0.png' %}"/></a>
+						<a href="#"><img src="{% static 'img/foot1.png' %}"/></a>
+						<a href="#"><img src="{% static 'img/foot2.png' %}"/></a>
+						<a href="#"><img src="{% static 'img/foot3.png' %}"/></a>
+						<a href="#"><img src="{% static 'img/foot4.png' %}"/></a>
 					</div>
 				</div>
 			</div>
@@ -1094,14 +1093,14 @@
 		<!--右边侧栏-->
 		<div class="nav">
 			<ul>
-				<li><img class="kefu" src="img/nav0.png"/><img src="img/right11.jpg"/></li>
-				<li class="li_p"><a href="shoppingCart.html"><img class="cart" src="img/right20.jpg"/></a><p>0</p></li>
-				<li><img class="kefu" src="img/nav1.png"/><img src="img/right30.jpg"/></li>
-				<li><img class="kefu" src="img/nav2.png"/><img src="img/right40.jpg"/></li>
+				<li><img class="kefu" src="{% static 'img/nav0.png' %}"/><img src="{% static 'img/right11.jpg' %}"/></li>
+				<li class="li_p"><a href="shoppingCart.html"><img class="cart" src="{% static 'img/right20.jpg' %}"/></a><p>0</p></li>
+				<li><img class="kefu" src="{% static 'img/nav1.png' %}"/><img src="{% static 'img/right30.jpg' %}"/></li>
+				<li><img class="kefu" src="{% static 'img/nav2.png' %}"/><img src="{% static 'img/right40.jpg' %}"/></li>
 			</ul>
 			<ul>
-				<li><img class="kefu" src="img/nav4.png"/><img src="img/right50.jpg"/></li>
-				<li><img class="img_last" src="img/right60.jpg"/></li>
+				<li><img class="kefu" src="{% static 'img/nav4.png' %}"/><img src="{% static 'img/right50.jpg' %}"/></li>
+				<li><img class="img_last" src="{% static 'img/right60.jpg' %}"/></li>
 			</ul>
 		</div>
 	</body>

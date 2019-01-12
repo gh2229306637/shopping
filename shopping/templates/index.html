@@ -18,9 +18,8 @@
     <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'js/index.js' %}" type="text/javascript" charset="utf-8"></script>
-{#    <script src="{% static 'js/shell.js' %}" type="text/javascript" charset="utf-8"></script>#}
-    <link rel="stylesheet" href="{% static 'css/sale.css' %}">
     <link rel="stylesheet" href="{% static 'css/loop.css' %}">
+
 </head>
 <body>
 
@@ -855,15 +854,19 @@
             </div>
         </div>
         <div class="list_left">
-            <div class="list_left_top">
-                <img class="timg" src="{% static 'img/hot_top.png' %}" alt="">
-                <a href="{% url 'lcc:detail' %}"><img class="timg" src="{% static 'img/hot_top0.jpg' %}" alt=""></a>
-                <a href="#"><img class="timg" src="{% static 'img/hot_top1.jpg' %}" alt=""></a>
-            </div>
-            <div class="list_left_bottom">
-                <a href="#"><img class="bimg" src="{% static 'img/hot_bottom.png' %}" alt=""></a>
-                <a href="#"><img class="bimg" src="{% static 'img/hot_bottom0.jpg' %}" alt=""></a>
-                <a href="#"><img class="bimg" src="{% static 'img/hot_bottom1.jpg' %}" alt=""></a>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+
+                    {% for goodlist in goodslists %}
+                        <div class="swiper-slide"><img src="{{ goodlist.img }}" alt=""></div>
+                    {% endfor %}
+
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
         <div class="listM_right">

@@ -35,3 +35,20 @@ body {
     -webkit-align-items: center;
     align-items: center;
 }
+.list_left{
+    width: 800px;
+    height: 800px;
+    float: left;
+    border: 1px solid red;
+}
+.list_left .swiper-container {
+    width: 300px;
+    height: 300px;
+    padding: 50px;
+}
+.list_left .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
