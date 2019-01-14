@@ -6,12 +6,11 @@ import time
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpRequest
 
-from lcc.models import User, Wheel,GoodsList
+from lcc.models import User, Wheel, Computers
 
 
 def index(request):
     wheels = Wheel.objects.all()
-    goodslists = GoodsList.objects.all()
     token = request.session.get('token')
     users = User.objects.filter(token=token)
     if users.count():
@@ -19,7 +18,8 @@ def index(request):
         phone = user.phone
     else:
         phone = None
-    return render(request,'index.html',{'phone':phone,'wheels':wheels,'goodslists':goodslists})
+    computers = Computers.objects.all()
+    return render(request,'index.html',{'phone':phone,'wheels':wheels,'computers':computers})
 
 
 def generate_token():
@@ -54,7 +54,6 @@ def register(request):
         user.save()
         response = redirect('lcc:index')
         request.session['token'] = user.token
-        request.session.set_expiry(10)
         return response
 
 
@@ -76,12 +75,19 @@ def login(request):
             response = redirect('lcc:index')
             user = users.first()
             request.session['token'] = user.token
-            request.session.set_expiry(10)
             return response
         else:
             err = '用户名或密码错误，请重新登录！'
             return render(request,'login.html',{'err':err})
 
 
-def detail(request):
-    return render(request,'detail.html')
+def detail(request,goodsid):
+    token = request.session.get('token')
+    users = User.objects.filter(token=token)
+    if users.count():
+        user = users.first()
+        phonenum = user.phone
+    else:
+        phonenum = None
+    computer = Computers.objects.get(id=goodsid)
+    return render(request,'detail.html',{'phonenum':phonenum,'computer':computer})

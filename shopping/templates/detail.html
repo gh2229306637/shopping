@@ -3,13 +3,22 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>AVENT/新安怡 自然原生新生儿防胀气宽口径玻璃奶瓶 240ml-奶瓶/奶嘴-AVENT/新安怡-嗨淘全球</title>
+		<title>{{ computer.title }}</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}"/>
+        <link rel="shortcut icon" href="{% static 'img/xiaomiicon.png' %}"/>
 		<script src="{% static 'js/jquery-1.12.0.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/detail.js' %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static 'js/product.js' %}" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.esm.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.esm.bundle.js"></script>
+        <link rel="stylesheet" href="{% static 'css/detail_loop.css' %}">
+
 	</head> 
 	<body>
 		<div class="head_main"> 
@@ -17,8 +26,13 @@
 			<div class="head_main_top">
 				<div class="head_main_topM">
 					<div class="head_main_topM_left">
-						<a href="#">登录</a>
-						<a href="#">免费注册</a>
+						{% if phonenum %}
+                            {{ phonenum }}
+                            <a href="/logout/">退出</a>
+                        {% else %}
+                            <a href="/login/">登录</a>
+                            <a href="/register/">免费注册</a>
+                        {% endif %}
 						<a href="#"><img src="{% static 'img/headshouji.png' %}"/>手机版</a>
 					</div>
 					<div class="head_main_topM_right">
@@ -37,8 +51,8 @@
 			<div class="head_main_middle">
 				<div class="head_main_middleM">
 					<div class="head_main_middleM_left">
-						<a href="#"><img src="{% static 'img/search.png' %}"/></a>
-						<img  src="{% static 'img/hitao.png' %}"/>
+						<a href="{% url 'lcc:index' %}"><img src="{% static 'img/xiaomilogo.png' %}"/></a>
+
 					</div>
 					<div class="head_main_middleM_right">
 						<input type="text"id="input1" placeholder="搜索商品"/><input type="button"  id="input2" value="搜索" />
@@ -53,7 +67,7 @@
 			<div class="head_main_bottom">
 				<div class="head_main_bottomM">
 					<div class="head_main_bottomM_left">
-						<span><a href="index.html">首页</a></span><span><a href="#">全球特卖</a></span>
+						<span><a href="{% url 'lcc:index' %}">首页</a></span><span><a href="#">全球特卖</a></span>
 					</div>
 					<div class="head_main_bottomM_right">
 						<span><img src="{% static 'img/xiala.png' %}"/></span>
@@ -708,18 +722,36 @@
 					<button>查看全部品牌&gt;</button>
 				</div>
 				<div class="concent_topM_top">
-					<span><a href="index.html">首页</a> > <b>AVENT/新安怡 自然原生新生儿防胀气宽口径玻璃奶瓶 240ml</b></span> 
+					<span><a href="index.html">首页</a> > <b>{{ computer.title }}</b></span>
 				</div>
 				<div class="concent_topM_bottom">
 					<div class="concent_topM_bottom_l">
 						<div class="concent_topM_bottom_l_title">
-							<img src="{% static 'img/naiping.jpg' %}"/><span>[特卖] AVENT/新安怡 自然原生新生儿防胀气宽口径玻璃奶瓶 240ml</span>
+							<img src="{{ computer.img1 }}"/><span>{{ computer.title }}</span>
 						</div>
 						<div id="fangdajing">
-							<div id="fangdajing_l">
+							<div id="fangdajing_l"></div>
+							<div class="swiper-container gallery-top">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img1 }}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img2 }}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img3 }}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img4 }}')"></div>
 
-							</div>
-							<img class="fangdajing" src="{% static 'img/img_list5/1.jpg' %}"/>
+                                </div>
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next swiper-button-white"></div>
+                                <div class="swiper-button-prev swiper-button-white"></div>
+                            </div>
+                            <div class="swiper-container gallery-thumbs">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img1 }}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img2 }}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img3 }}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{ computer.img4 }}')"></div>
+
+                                </div>
+                            </div>
 						</div>
 						<img class="erweima" src="{% static 'img/erweima.png' %}"/>
 						<p>分享<a href="#"><img class="weixin" src="{% static 'img/lianjie0.png' %}"/></a><a href="#"><img src="{% static 'img/lianjie1.png' %}"/></a><a href="#"><img src="{% static 'img/lianjie2.png' %}"/></a></p>
@@ -733,19 +765,14 @@
 						</div>
 						<div class="concent_topM_bottom_r_sub">
 							<div class="jieshao">
-								<p>花中之王牡丹与玫瑰组成的护手套装，深层滋润双手肌肤，嫩滑的触感伴着淡淡清香，双手持久保湿水嫩润滑，缔造鲜花般娇嫩玉指，带来非凡长效的保湿效果，尽显活力与年轻！</p>
+								<p>{{ computer.introduce }}</p>
 							</div>
 							<div class="price">
-								<em>$</em><b>98.00</b><a href="#">税务说明</a>
+								<em>$</em><b>{{ computer.price }}</b><a href="#">税务说明</a>
 							</div>
-							<div class="price_p">
-								官方指导价<span>$170.00</span><i>省</i>组合省<span>32.00</span>元
-							</div>
+
 							<div class="baoyou">
 								<span>包邮</span>  全场包邮
-							</div>
-							<div class="fahuo">
-								<span>法国直采 杭州保税仓发货</span>
 							</div>
 							<hr />
 							<div class="shuliang">
@@ -1103,5 +1130,6 @@
 				<li><img class="img_last" src="{% static 'img/right60.jpg' %}"/></li>
 			</ul>
 		</div>
+        <script src="{% static 'js/detail_loop.js' %}"></script>
 	</body>
 </html>

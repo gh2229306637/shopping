@@ -3,12 +3,12 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>嗨淘全球-海淘正品，就认嗨淘全球，阿里巴巴和湖南卫视旗下跨境电商平台</title>
+    <title>小米商城-永远相信美好的事情即将发生</title>
     <meta name="keyword" content="嗨淘全球,海购,跨境购,代购,进口,跨境电商,海外直邮,化妆品,母婴,奶粉,特卖,免税店,韩流,欧美">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
 
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="shortcut icon" href="{% static 'img/xiaomiicon.png' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}"/>
     <script src="{% static 'js/jquery-1.12.0.js' %}" type="text/javascript" charset="utf-8"></script>
@@ -21,12 +21,7 @@
 </head>
 <body>
 
-<!--头部友情提示-->
-<div class="head_top">
-    <a href="index.html"></a>
-    <i class="head_close" title="关闭"><!--点击关闭-->
-    </i>
-</div>
+
 <!--头部主体-->
 <div class="head_main">
     <!--登录，注册，订单，收藏栏目-->
@@ -58,8 +53,8 @@
     <div class="head_main_middle">
         <div class="head_main_middleM">
             <div class="head_main_middleM_left">
-                <a href="#"><img src="{% static 'img/search.png' %}"></a>
-                <img src="{% static 'img/hitao.png' %}">
+                <a href="#"><img src="{% static 'img/xiaomilogo.png' %}"></a>
+
             </div>
             <div class="head_main_middleM_right">
                 <input type="text" id="input1" placeholder="搜索商品"><input type="button" id="input2" value="搜索">
@@ -854,8 +849,10 @@
         <div class="list_left">
             <div class="list_left_top">
                 <img src="{% static 'img/hot_top.png' %}" alt="">
-                <a href="#"><img class="img" src="{% static 'img/hot_top0.jpg' %}" alt=""></a>
-                <a href="#"><img class="img" src="{% static 'img/hot_top1.jpg' %}" alt=""></a>
+                {% for computer in computers %}
+                    <a href="{% url 'lcc:detail' computer.id%}"><img class="img" src="{{ computer.img }}" alt=""></a>
+                {% endfor %}
+
             </div>
             <div class="list_left_bottom">
                 <a href="#"><img class="img" src="{% static 'img/hot_bottom.png' %}" alt=""></a>
