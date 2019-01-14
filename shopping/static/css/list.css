@@ -25,6 +25,7 @@
 .list_left img{
     float: left;
 }
-.list_left img:hover{
-
+.list_left .img:hover{
+    opacity: 0.5;
+    border:2px solid gray;
 }
