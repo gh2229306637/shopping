@@ -5,12 +5,9 @@
     <meta charset="utf-8"/>
     <title>嗨淘全球-海淘正品，就认嗨淘全球，阿里巴巴和湖南卫视旗下跨境电商平台</title>
     <meta name="keyword" content="嗨淘全球,海购,跨境购,代购,进口,跨境电商,海外直邮,化妆品,母婴,奶粉,特卖,免税店,韩流,欧美">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.esm.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.esm.bundle.js"></script>
+
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}"/>
@@ -19,6 +16,7 @@
     <script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'js/index.js' %}" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="{% static 'css/loop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
 
 </head>
 <body>
@@ -854,19 +852,15 @@
             </div>
         </div>
         <div class="list_left">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-
-                    {% for goodlist in goodslists %}
-                        <div class="swiper-slide"><img src="{{ goodlist.img }}" alt=""></div>
-                    {% endfor %}
-
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+            <div class="list_left_top">
+                <img src="{% static 'img/hot_top.png' %}" alt="">
+                <a href="#"><img src="{% static 'img/hot_top0.jpg' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/hot_top1.jpg' %}" alt=""></a>
+            </div>
+            <div class="list_left_bottom">
+                <a href="#"><img src="{% static 'img/hot_bottom.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/hot_bottom0.jpg' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/hot_bottom1.jpg' %}" alt=""></a>
             </div>
         </div>
         <div class="listM_right">
@@ -1050,5 +1044,6 @@
     </ul>
 </div>
 <script src="{% static 'js/loop.js' %}"></script>
+<script src="{% static 'js/list.js' %}"></script>
 </body>
 </html>

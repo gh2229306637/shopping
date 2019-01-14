@@ -1,0 +1,30 @@
+.list_left{
+    position: relative;
+    width: 800px;
+    height: 1000px;
+    float: left;
+
+}
+.list_left_top{
+    width: 720px;
+    height: 525px;
+    position: absolute;
+    left: 8px;
+
+    padding-left: 60px;
+}
+.list_left_bottom{
+    width: 750px;
+    height: 415px;
+    position: absolute;
+    top: 535px;
+    left: 8px;
+
+    padding-left: 30px;
+}
+.list_left img{
+    float: left;
+}
+.list_left img:hover{
+
+}
