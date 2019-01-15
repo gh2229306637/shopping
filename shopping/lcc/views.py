@@ -93,5 +93,9 @@ def detail(request,goodsid):
 
 def checkphone(request):
     phone = request.GET.get('phone')
-    print(phone)
-    return JsonResponse({'info':'你好啊'})
+    user = User.objects.filter(phone=phone)
+    if user.exists():#占用
+        return JsonResponse({'info':'账号被占用','status':0})
+    else:#可用
+    #print(phone)
+        return JsonResponse({'info':'账号可以使用','status':1})

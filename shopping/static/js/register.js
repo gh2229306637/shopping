@@ -8,12 +8,19 @@ $(function () {
         if (!isReg) {
             $(this).next("span").text("*手机号格式有误，请重新输入");
             s1=false;
-            $.get('/checkphone/',{'phone':$(this).val()},function (response) {
-               console.log(response)
-            })
         } else {
             $(this).next("span").text("");
-            s1=true
+            s1=true;
+            $.get('/checkphone/',{'phone':$(this).val()},function (response) {
+                // console.log(response)
+                if(response.status==0){
+                    console.log(response)
+                    $(this).find("i").html();
+                }else{
+                    console.log(response)
+                    $(this).find("i").html();
+                }
+            })
         }
     })
 
@@ -24,10 +31,10 @@ $(function () {
         var isreg = reg.test($(this).val());
         if (!isreg) {
             $(this).next("span").text("*密码格式错误,请使用数字，字母和下划线");
-            s2=false
+            s2=false;
         } else {
             $(this).next("span").text("");
-            s2=true
+            s2=true;
         }
     })
 
