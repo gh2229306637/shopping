@@ -42,14 +42,14 @@ body{
 /*轮播图样式*/
 .concent_top{
 	width: 100%;
-	min-width: 1190pRx;
+	min-width: 1190px;
 	background-position: center;
 	cursor: pointer;
 }
 
 .concent_topM{
-	height: 300px;
-	width: 1190px;
+	height: 400px;
+	width: 1175px;
 	margin: 0 auto;
 	position: relative;
 }
@@ -156,10 +156,10 @@ body{
 
 .hot_top{
 	width: 100%;
-	min-width: 1190px;
+	min-width: 1175px;
 }
 .hot_topM{
-	width: 1190px;
+	width: 1175px;
 	height: 140px;
 	margin: 20px auto 0 auto;
 }
@@ -170,7 +170,7 @@ body{
 
 .hot_middle{
 	width: 100%;
-	min-width: 1190px;
+	min-width: 1175px;
 }
 
 .hot_middleM{

@@ -13,9 +13,9 @@ class Wheel(models.Model):
 class Computers(models.Model):
     title = models.CharField(max_length=100)
     img = models.CharField(max_length=100)
-    img1 = models.CharField(max_length=100)
-    img2 = models.CharField(max_length=100)
-    img3 = models.CharField(max_length=100)
-    img4 = models.CharField(max_length=100)
+    img1 = models.CharField(max_length=500)
+    img2 = models.CharField(max_length=500)
+    img3 = models.CharField(max_length=500)
+    img4 = models.CharField(max_length=500)
     introduce = models.CharField(max_length=300)
     price = models.CharField(max_length=10)

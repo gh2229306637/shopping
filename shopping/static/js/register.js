@@ -9,7 +9,7 @@ $(function(){
                 $(this).next("span").text("*手机号格式有误，请重新输入");
                 $("#submit").click(function(event){
                 	event.preventDefault();
-					alert('信息填写有误，请重新注册');
+                	alert('信息填写有误，请重新注册');
 					window.location.reload();
                 })
             }else{
