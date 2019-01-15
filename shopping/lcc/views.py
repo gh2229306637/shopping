@@ -4,7 +4,7 @@ import re
 
 import time
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,HttpRequest
+from django.http import HttpResponse,HttpRequest,JsonResponse
 
 from lcc.models import User, Wheel, Computers
 
@@ -16,10 +16,12 @@ def index(request):
     if users.count():
         user = users.first()
         phone = user.phone
+        img = user.img
     else:
         phone = None
+        img = None
     computers = Computers.objects.all()
-    return render(request,'index.html',{'phone':phone,'wheels':wheels,'computers':computers})
+    return render(request,'index.html',{'phone':phone,'wheels':wheels,'computers':computers,'img':img})
 
 
 def generate_token():
@@ -39,17 +41,9 @@ def register(request):
     if request.method == 'GET':
         return render(request,'register.html')
     elif request.method == 'POST':
-        users = User.objects.all()
         user = User()
-        phone = request.POST.get('phone')
-        for u in users:
-            if u.phone == phone:
-                msg = '*该手机号已被注册，请登录'
-                return render(request,'register.html',{'msg':msg})
-
         user.phone = request.POST.get('phone')
         user.password = generate_passwd(request.POST.get('password'))
-        user.code = 0
         user.token = generate_token()
         user.save()
         response = redirect('lcc:index')
@@ -74,6 +68,8 @@ def login(request):
         if users.count():
             response = redirect('lcc:index')
             user = users.first()
+            user.token = generate_token()
+            user.save()
             request.session['token'] = user.token
             return response
         else:
@@ -87,7 +83,15 @@ def detail(request,goodsid):
     if users.count():
         user = users.first()
         phonenum = user.phone
+        img = user.img
     else:
         phonenum = None
+        img = None
     computer = Computers.objects.get(id=goodsid)
-    return render(request,'detail.html',{'phonenum':phonenum,'computer':computer})
+    return render(request,'detail.html',{'phonenum':phonenum,'computer':computer,'img':img})
+
+
+def checkphone(request):
+    phone = request.GET.get('phone')
+    print(phone)
+    return JsonResponse({'info':'你好啊'})

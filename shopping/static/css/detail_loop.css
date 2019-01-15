@@ -32,3 +32,9 @@
 .gallery-thumbs .swiper-slide-active {
     opacity: 1;
 }
+.head_main_topM_left #detailimg{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+}
