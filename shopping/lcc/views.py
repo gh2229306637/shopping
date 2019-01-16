@@ -89,8 +89,13 @@ def detail(request,goodsid):
     else:
         phonenum = None
         img = None
+    if token:
+        user = User.objects.get(token=token)
+        carts = Cart.objects.filter(user=user)
+    else:
+        carts = None
     computer = Computers.objects.get(id=goodsid)
-    return render(request,'detail.html',{'phonenum':phonenum,'computer':computer,'img':img})
+    return render(request,'detail.html',{'phonenum':phonenum,'computer':computer,'img':img,'carts':carts})
 
 
 def checkphone(request):

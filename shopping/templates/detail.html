@@ -124,7 +124,18 @@
 							</div>
 							<hr />
 							<div class="shuliang">
-								数量:<button class="jian" computersid="{{ computer.id }}">-</button><input class="num" type="text" value="0" /><button class="jia" computersid="{{ computer.id }}">+</button>
+								数量:<button class="jian" computersid="{{ computer.id }}">-</button>
+                                {% if phonenum %}
+                                    {% for cart in carts %}
+                                        {% if cart.computers.id == computer.id %}
+                                            <input class="num" type="text" value="{{ cart.number }}" />
+                                        {% endif %}
+                                    {% endfor %}
+
+                                {% else %}
+                                    <input class="num" type="text" value="0" />
+                                {% endif %}
+                                <button class="jia" computersid="{{ computer.id }}">+</button>
 							</div>
 							<div class="goumai">
 								<button>立即购买</button>
