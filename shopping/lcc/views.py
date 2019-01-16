@@ -121,37 +121,22 @@ def shoppingCart(request):
     return render(request, 'shoppingCart.html', {'phonenum': phonenum,'img': img})
 
 
+
+
 def addCart(request):
     token = request.session.get('token')
+
     if token:
         user = User.objects.get(token=token)
         computersid = request.GET.get('computersid')
         computers = Computers.objects.get(id=computersid)
-        carts = Cart.objects.filter(user=user).filter(computers=computers)
-        if carts.exists():
-            cart = carts.first()
-            cart.number += 1
-            cart.save()
-            info={'info':'{}-增加商品数量成功'.format(computers.title),'status':1,'number':cart.number}
-        else:
-            cart = Cart()
-            cart.user = user
-            cart.computers = computers
-            cart.save()
-            info={'info':'{}-添加购物车操作成功'.format(computers.title),'status':1,'number':cart.number}
+        cart = Cart.objects.filter(user=user).filter(computers=computers).first()
+        cart.user = user
+        cart.computers = computers
+        cart.number = request.GET.get('num')
+
+        cart.save()
+        info={'info':'{}-添加购物车操作成功'.format(computers.title),'status':1,'number':cart.number}
         return JsonResponse(info)
     else:
         return JsonResponse({'info':'请登录后操作','status':0})
-
-
-def subCart(request):
-    token = request.session.get('token')
-    user = User.objects.get(token=token)
-    computersid = request.GET.get('computersid')
-    computers = Computers.objects.get(id=computersid)
-    cart = Cart.objects.filter(user=user).filter(computers=computers).first()
-    if cart.number > 0:
-        cart.number -= 1
-        cart.save()
-    return JsonResponse({'info':'{}-减少商品数量成功'.format(computers.title),'status':1,'number':cart.number})
-
