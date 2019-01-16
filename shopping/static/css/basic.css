@@ -430,10 +430,12 @@ a{
 
 .nav{
 	height: 100%;
-	position: fixed;
+	width: 50px;
+	position: absolute;
 	background: #000;
 	right: 0;
 	top: 0;
+	z-index: 1;
 }
 
 .nav ul:first-child{
@@ -441,16 +443,7 @@ a{
 	padding-top: 150px;
 }
 
-.nav ul:last-child{
-	list-style: none;
-	position: absolute;
-	bottom: 0;
-	
-}
-.kefu{
-	position: absolute;
-	display: none;
-}
+
 .li_p{
 	position: relative;
 }

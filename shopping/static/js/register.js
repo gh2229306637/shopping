@@ -5,20 +5,21 @@ $(function () {
     $("#phone").blur(function () {
         var reg = /^[1][3-9][0-9]{9}/;
         var isReg = reg.test($(this).val());
+        var $that=$(this);
         if (!isReg) {
-            $(this).next("span").text("*手机号格式有误，请重新输入");
+            $(this).next().text("*手机号格式有误，请重新输入");
+            $that.next().next().html("");
             s1=false;
         } else {
-            $(this).next("span").text("");
+            $(this).next().text("");
             s1=true;
+
             $.get('/checkphone/',{'phone':$(this).val()},function (response) {
                 // console.log(response)
                 if(response.status==0){
-                    console.log(response)
-                    $(this).find("i").html();
+                    $that.next().html(response.info);
                 }else{
-                    console.log(response)
-                    $(this).find("i").html();
+                   $that.next().next().html(response.info);
                 }
             })
         }

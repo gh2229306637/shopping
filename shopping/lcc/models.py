@@ -19,3 +19,9 @@ class Computers(models.Model):
     img4 = models.CharField(max_length=500)
     introduce = models.CharField(max_length=300)
     price = models.CharField(max_length=10)
+
+class Cart(models.Model):
+    user = models.ForeignKey(User)
+    computers = models.ForeignKey(Computers)
+    number = models.IntegerField(default=1)
+    isselect = models.BooleanField(default=True)

@@ -6,7 +6,7 @@ import time
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpRequest,JsonResponse
 
-from lcc.models import User, Wheel, Computers
+from lcc.models import User, Wheel, Computers, Cart
 
 
 def index(request):
@@ -48,6 +48,7 @@ def register(request):
         user.save()
         response = redirect('lcc:index')
         request.session['token'] = user.token
+        request.session.set_expiry(0)
         return response
 
 
@@ -71,6 +72,7 @@ def login(request):
             user.token = generate_token()
             user.save()
             request.session['token'] = user.token
+            request.session.set_expiry(0)
             return response
         else:
             err = '用户名或密码错误，请重新登录！'
@@ -99,3 +101,52 @@ def checkphone(request):
     else:#可用
     #print(phone)
         return JsonResponse({'info':'账号可以使用','status':1})
+
+
+def shoppingCart(request):
+    token = request.session.get('token')
+    users = User.objects.filter(token=token)
+    if users.count():
+        user = users.first()
+        phonenum = user.phone
+        img = user.img
+    else:
+        phonenum = None
+        img = None
+    return render(request, 'shoppingCart.html', {'phonenum': phonenum,'img': img})
+
+
+def addCart(request):
+    token = request.session.get('token')
+    if token:
+        user = User.objects.get(token=token)
+        computersid = request.GET.get('computersid')
+        computers = Computers.objects.get(id=computersid)
+        carts = Cart.objects.filter(user=user).filter(computers=computers)
+        if carts.exists():
+            cart = carts.first()
+            cart.number += 1
+            cart.save()
+            info={'info':'{}-增加商品数量成功'.format(computers.title),'status':1,'number':cart.number}
+        else:
+            cart = Cart()
+            cart.user = user
+            cart.computers = computers
+            cart.save()
+            info={'info':'{}-添加购物车操作成功'.format(computers.title),'status':1,'number':cart.number}
+        return JsonResponse(info)
+    else:
+        return JsonResponse({'info':'请登录后操作','status':0})
+
+
+def subCart(request):
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    computersid = request.GET.get('computersid')
+    computers = Computers.objects.get(id=computersid)
+    cart = Cart.objects.filter(user=user).filter(computers=computers).first()
+    if cart.number > 0:
+        cart.number -= 1
+        cart.save()
+    return JsonResponse({'info':'{}-减少商品数量成功'.format(computers.title),'status':1,'number':cart.number})
+

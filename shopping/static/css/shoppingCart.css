@@ -232,3 +232,8 @@
 	background: #E10482;
 	border-radius: 30px;
 }
+#indeximg{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
