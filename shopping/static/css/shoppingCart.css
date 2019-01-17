@@ -237,3 +237,84 @@
     height: 20px;
     border-radius: 50%;
 }
+.detailcart{
+	display: inline-block;
+	width: 100%;
+
+}
+.onegoods{
+	width: 100%;
+	height: 150px;
+	border: 1px solid lightslategray;
+}
+.leftbox{
+    border-right: 1px solid lightslategray;
+	float: left;
+	height: 150px;
+	width: 5%;
+
+}
+.product{
+    line-height: 150px;
+    border-right: 1px solid lightslategray;
+	float: left;
+	height: 150px;
+	width: 45%;
+
+}
+.price{
+    border-right: 1px solid lightslategray;
+    text-align: center;
+    line-height: 150px;
+	float: left;
+	height: 150px;
+	width: 13%;
+
+}
+.number{
+    border-right: 1px solid lightslategray;
+    text-align: center;
+    line-height: 150px;
+	float: left;
+	height: 150px;
+	width: 13%;
+
+}
+.subtotal{
+    text-align: center;
+    line-height: 150px;
+    border-right: 1px solid lightslategray;
+	float: left;
+	height: 150px;
+	width: 11%;
+
+}
+.options{
+    text-align: center;
+    line-height: 150px;
+	float: left;
+	height: 150px;
+	width: 11%;
+
+}
+.options p:hover{
+    color: red;
+    cursor: pointer;
+}
+.picture{
+    padding-top: 10px;
+    float: left;
+    width: 20%;
+    height: 100px;
+
+}
+.infomation{
+    float: left;
+    width: 75%;
+    height: 100px;
+
+}
+.product img{
+    height: 100%;
+    width: 100%;
+}

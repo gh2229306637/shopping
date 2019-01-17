@@ -19,8 +19,8 @@
 			<div class="head_main_top">
 				<div class="head_main_topM">
 					<div class="head_main_topM_left">
-						{% if phonenum %}
-                            <img id="indeximg" src="{{ img }}" alt="">
+						{% if user %}
+                            <img id="indeximg" src="{{ user.img }}" alt="">
                             <a href="/logout/">退出</a>
                         {% else %}
                             <a href="/login/">登录</a>
@@ -62,7 +62,7 @@
 				</div>
 				<div class="wareM2">
 					<div class="wareM2_left">
-						<input type="checkbox"  id="quanxuan" />
+						<input type="checkbox"  id="quanxuan" checked/>
 						<b>全选</b>
 					</div>
 					<span class="one">商品</span>
@@ -72,21 +72,36 @@
 					<span class="three">操作</span>
 				</div>
 				<!--加载-->
+                <div class="detailcart">
+                    {% if carts %}
+                        {% for cart in carts %}
+                            <div class="onegoods">
+                                <div class="leftbox"><input type="checkbox"  id="danxuan" checked/></div>
+                                <div class="product">
+                                    <div class="picture"><img src="{{ cart.computers.img1 }}" alt=""></div>
+                                    <div class="infomation"><p>{{ cart.computers.title }}</p></div>
+                                </div>
+                                <div class="price">{{ cart.computers.price }}</div>
+                                <div class="number"><span>{{ cart.number }}</span></div>
+                                <div class="subtotal"></div>
+                                <div class="options"><p>删除</p></div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>购物车空空如也，快去选购商品吧亲！<a href="/#list">去选购</a></p>
+                    {% endif %}
+                </div>
 				<!--加载结束-->
 				<div class="clear">
 					
 				</div>
-				<div class="wareM5">
-					商品金额：
-					<span>$0.00</span>
-				</div>
+
 				<div class="wareM6">
 
 					<div class="wareM6_right">
 						<button>去结算</button>
 						<div class="wareM6_right_p">
-							<p>已选<span>1</span>件商品，合计（不含运费及税费）<span id="s1">$0.00</span></p>
-							<p>商品总计：<span id="s2">$0.00</span>活动优惠：<span></span>$0.00</p>
+							<p>已选<span class="selectnum"></span>件商品，合计（不含运费及税费）<em>￥</em><span id="s1"></span></p>
 						</div>
 						<div class="clear">
 							

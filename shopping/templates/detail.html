@@ -23,8 +23,8 @@
 			<div class="head_main_top">
 				<div class="head_main_topM">
 					<div class="head_main_topM_left">
-						{% if phonenum %}
-                            <img id="detailimg" src="{{ img }}" alt="">
+						{% if user %}
+                            <img id="detailimg" src="{{ user.img }}" alt="">
                             <a href="/logout/">退出</a>
                         {% else %}
                             <a href="/login/">登录</a>
@@ -116,7 +116,7 @@
 								<p>{{ computer.introduce }}</p>
 							</div>
 							<div class="price">
-								<em>$</em><b>{{ computer.price }}</b>
+								<em>￥</em><b>{{ computer.price }}</b>
 							</div>
 
 							<div class="baoyou">

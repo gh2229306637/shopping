@@ -15,13 +15,10 @@ def index(request):
     users = User.objects.filter(token=token)
     if users.count():
         user = users.first()
-        phone = user.phone
-        img = user.img
     else:
-        phone = None
-        img = None
+        user = None
     computers = Computers.objects.all()
-    return render(request,'index.html',{'phone':phone,'wheels':wheels,'computers':computers,'img':img})
+    return render(request,'index.html',{'user':user,'wheels':wheels,'computers':computers})
 
 
 def generate_token():
@@ -84,14 +81,11 @@ def detail(request,goodsid):
     if users.count():
         user = users.first()
         carts = Cart.objects.filter(user=user)
-        phonenum = user.phone
-        img = user.img
     else:
-        phonenum = None
-        img = None
+        user = None
         carts = None
     computer = Computers.objects.get(id=goodsid)
-    return render(request,'detail.html',{'phonenum':phonenum,'computer':computer,'img':img,'carts':carts})
+    return render(request,'detail.html',{'user':user,'computer':computer,'carts':carts})
 
 
 def checkphone(request):
@@ -108,12 +102,11 @@ def shoppingCart(request):
     users = User.objects.filter(token=token)
     if users.count():
         user = users.first()
-        phonenum = user.phone
-        img = user.img
+        carts = Cart.objects.filter(user=user)
     else:
-        phonenum = None
-        img = None
-    return render(request, 'shoppingCart.html', {'phonenum': phonenum,'img': img})
+        user = None
+        carts = None
+    return render(request, 'shoppingCart.html', {'user':user,'carts':carts})
 
 
 
@@ -126,6 +119,7 @@ def addCart(request):
         computersid = request.GET.get('computersid')
         computers = Computers.objects.get(id=computersid)
         carts = Cart.objects.filter(user=user).filter(computers=computers)
+
         if carts.exists():
             cart = carts.first()
             cart.number = request.GET.get('num')

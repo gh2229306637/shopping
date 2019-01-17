@@ -28,8 +28,8 @@
     <div class="head_main_top">
         <div class="head_main_topM">
             <div class="head_main_topM_left">
-                {% if phone %}
-                    <img id="indeximg" src="{{ img }}" alt="">
+                {% if user %}
+                    <img id="indeximg" src="{{ user.img }}" alt="">
                     <a href="/logout/">退出</a>
                 {% else %}
                     <a href="/login/">登录</a>
