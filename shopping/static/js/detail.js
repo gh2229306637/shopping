@@ -10,7 +10,7 @@ $(function () {
     $(".jian").click(function () {
         console.log("减操作")
         var num1=parseInt($(".num").val())
-        if(num1>0){
+        if(num1>1){
             var num2=num1-1
             $(".num").val(num2)
         }

@@ -126,7 +126,7 @@
 							<div class="shuliang">
 								数量:<button class="jian">-</button>
 
-                                {% if phonenum %}
+                                {% if carts %}
                                     {% for cart in carts %}
                                         {% if cart.computers.id == computer.id %}
                                             <input class="num" name="num" type="text" value="{{ cart.number }}" />
@@ -134,7 +134,7 @@
                                     {% endfor %}
 
                                 {% else %}
-                                    <input class="num" name="num" type="text" value="0" />
+                                    <input class="num" name="num" type="text" value="1" />
                                 {% endif %}
 
                                 <button class="jia" computersid="{{ computer.id }}">+</button>

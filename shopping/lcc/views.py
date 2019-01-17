@@ -65,7 +65,6 @@ def login(request):
         phone = request.POST.get('phone')
         password = generate_passwd(request.POST.get('password'))
         users = User.objects.filter(phone=phone).filter(password=password)
-        #如果匹配失败阻止表单提交
         if users.count():
             response = redirect('lcc:index')
             user = users.first()
@@ -84,15 +83,12 @@ def detail(request,goodsid):
     users = User.objects.filter(token=token)
     if users.count():
         user = users.first()
+        carts = Cart.objects.filter(user=user)
         phonenum = user.phone
         img = user.img
     else:
         phonenum = None
         img = None
-    if token:
-        user = User.objects.get(token=token)
-        carts = Cart.objects.filter(user=user)
-    else:
         carts = None
     computer = Computers.objects.get(id=goodsid)
     return render(request,'detail.html',{'phonenum':phonenum,'computer':computer,'img':img,'carts':carts})
@@ -104,7 +100,6 @@ def checkphone(request):
     if user.exists():#占用
         return JsonResponse({'info':'账号被占用','status':0})
     else:#可用
-    #print(phone)
         return JsonResponse({'info':'账号可以使用','status':1})
 
 
@@ -130,13 +125,20 @@ def addCart(request):
         user = User.objects.get(token=token)
         computersid = request.GET.get('computersid')
         computers = Computers.objects.get(id=computersid)
-        cart = Cart.objects.filter(user=user).filter(computers=computers).first()
-        cart.user = user
-        cart.computers = computers
-        cart.number = request.GET.get('num')
-
-        cart.save()
-        info={'info':'{}-添加购物车操作成功'.format(computers.title),'status':1,'number':cart.number}
-        return JsonResponse(info)
+        carts = Cart.objects.filter(user=user).filter(computers=computers)
+        if carts.exists():
+            cart = carts.first()
+            cart.number = request.GET.get('num')
+            cart.save()
+            info = {'info': '{}-修改购物车数量操作成功'.format(computers.title), 'status': 1, 'number': cart.number}
+            return JsonResponse(info)
+        else:
+            cart = Cart()
+            cart.user = user
+            cart.computers = computers
+            cart.number = request.GET.get('num')
+            cart.save()
+            info={'info':'{}-添加购物车操作成功'.format(computers.title),'status':1,'number':cart.number}
+            return JsonResponse(info)
     else:
         return JsonResponse({'info':'请登录后操作','status':0})

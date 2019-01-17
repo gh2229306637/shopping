@@ -17,9 +17,11 @@ $(function () {
             $.get('/checkphone/',{'phone':$(this).val()},function (response) {
                 // console.log(response)
                 if(response.status==0){
+                    $that.next().next().html("");
                     $that.next().html(response.info);
                 }else{
-                   $that.next().next().html(response.info);
+                    $that.next().html("");
+                    $that.next().next().html(response.info);
                 }
             })
         }
