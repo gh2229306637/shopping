@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^addCart/$',views.addCart,name='addCart'),
     url(r'^change/$',views.change,name='change'),
     url(r'^allselect/$',views.allselect,name='allselect'),
+    url(r'^delgoods/$',views.delgoods,name='delgoods'),
 ]
 
 

@@ -44,14 +44,17 @@ $(function () {
     var long=$(".danxuan").length;
     for(var i=0;i<long;i++){
         $(".danxuan").eq(i).click(function () {
+            var m=0;
             var s=0;
             for(var i=0;i<long;i++){
                 var sub=parseInt($(".subtotal").eq(i).text());
                 if($(".danxuan").eq(i).is(":checked")){
-                   s+=sub
+                    m+=1;
+                   s+=sub;
                 }
             }
-            $(".s1").text(s)
+            $(".s1").text(s);
+            $(".selectnum").text(m);
             $that=$(this);
             var computersid=$that.val();
             $.get('/change/',{'computersid':computersid},function (response) {
@@ -65,7 +68,21 @@ $(function () {
             })
         })
     }
-
+    var l=$(".options").length;
+    for(var i=0;i<l;i++){
+        $(".options").eq(i).click(function () {
+            $that=$(this);
+            var computersid=$that.attr('computersid');
+            var n=computersid-1
+            console.log(n)
+            $.get('/delgoods/',{'computersid':computersid},function (response) {
+                console.log(response)
+                if(response.status==1){
+                    $(".onegoods").eq(n).hide();
+                }
+            })
+        })
+    }
 
 
 })

@@ -78,14 +78,15 @@ def login(request):
 def detail(request,goodsid):
     token = request.session.get('token')
     users = User.objects.filter(token=token)
+    computers = Computers.objects.get(id=goodsid)
     if users.count():
         user = users.first()
-        carts = Cart.objects.filter(user=user)
+        carts = Cart.objects.filter(user=user).filter(computers=computers)
     else:
         user = None
         carts = None
-    computer = Computers.objects.get(id=goodsid)
-    return render(request,'detail.html',{'user':user,'computer':computer,'carts':carts})
+
+    return render(request,'detail.html',{'user':user,'computers':computers,'carts':carts})
 
 
 def checkphone(request):
@@ -130,7 +131,7 @@ def addCart(request):
             cart = Cart()
             cart.user = user
             cart.computers = computers
-            cart.number = request.GET.get('num')
+            cart.number = 1
             cart.save()
             info={'info':'{}-添加购物车操作成功'.format(computers.title),'status':1,'number':cart.number}
             return JsonResponse(info)
@@ -174,3 +175,14 @@ def allselect(request):
                 'status':0
             }
     return JsonResponse(data)
+
+
+def delgoods(request):
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    computersid = request.GET.get('computersid')
+    computers = Computers.objects.get(id=computersid)
+    cart = Cart.objects.filter(user=user).filter(computers=computers).first()
+    cart.number = 1
+    cart.save()
+    return JsonResponse({'info':'删除成功','status':1})

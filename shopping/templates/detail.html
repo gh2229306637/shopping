@@ -1,485 +1,525 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>{{ computer.title }}</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}"/>
-        <link rel="shortcut icon" href="{% static 'img/xiaomiicon.png' %}"/>
-		<script src="{% static 'js/jquery-1.12.0.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/detail.js' %}" type="text/javascript" charset="utf-8"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
-        <link rel="stylesheet" href="{% static 'css/detail_loop.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ computers.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'img/xiaomiicon.png' %}"/>
+    <script src="{% static 'js/jquery-1.12.0.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/detail.js' %}" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/detail_loop.css' %}">
 
-	</head>
-	<body>
-		<div class="head_main">
-			<!--登录，注册，订单，收藏栏目-->
-			<div class="head_main_top">
-				<div class="head_main_topM">
-					<div class="head_main_topM_left">
-						{% if user %}
-                            <img id="detailimg" src="{{ user.img }}" alt="">
-                            <a href="/logout/">退出</a>
+</head>
+<body>
+<div class="head_main">
+    <!--登录，注册，订单，收藏栏目-->
+    <div class="head_main_top">
+        <div class="head_main_topM">
+            <div class="head_main_topM_left">
+                {% if user %}
+                    <img id="detailimg" src="{{ user.img }}" alt="">
+                    <a href="/logout/">退出</a>
+                {% else %}
+                    <a href="/login/">登录</a>
+                    <a href="/register/">免费注册</a>
+                {% endif %}
+
+            </div>
+            <div class="head_main_topM_right">
+                <a href="#">我的订单</a>
+                <span>|</span>
+                <a href="/shoppingCart">我的购物车</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--搜索栏-->
+    <div class="head_main_middle">
+        <div class="head_main_middleM">
+            <div class="head_main_middleM_left">
+                <a href="{% url 'lcc:index' %}"><img src="{% static 'img/xiaomilogo.png' %}"/></a>
+
+            </div>
+            <div class="head_main_middleM_right">
+                <input type="text" id="input1" placeholder="搜索商品"/><input type="button" id="input2" value="搜索"/>
+                <div class="head_main_middleM_rightM">
+                    <a href="#">面霜</a><a href="#">|面膜</a><a href="#">|洁面</a><a href="#">|奶粉</a><a href="#">|纸尿裤</a><a
+                        href="#">|辅食</a><a href="#">|宝宝营养</a><a href="#">|唇部彩妆</a><a href="#">|身体护理</a><a
+                        href="#">|香氛</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--导航栏-->
+    <div class="head_main_bottom">
+        <div class="head_main_bottomM">
+            <div class="head_main_bottomM_left">
+                <span><a href="{% url 'lcc:index' %}">首页</a></span><span><a href="/#list">商品列表</a></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="concent_top">
+    <div class="concent_topM">
+
+        <div class="concent_topM_top">
+            <span>首页 > <b>{{ computers.title }}</b></span>
+        </div>
+        <div class="concent_topM_bottom">
+            <div class="concent_topM_bottom_l">
+                <div class="concent_topM_bottom_l_title">
+                    <img src="{{ computers.img1 }}"/><span>{{ computers.title }}</span>
+                </div>
+                <div id="fangdajing">
+                    <div id="fangdajing_l"></div>
+                    <div class="swiper-container gallery-top">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img1 }}')"></div>
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img2 }}')"></div>
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img3 }}')"></div>
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img4 }}')"></div>
+
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next swiper-button-white"></div>
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                    </div>
+                    <div class="swiper-container gallery-thumbs">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img1 }}')"></div>
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img2 }}')"></div>
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img3 }}')"></div>
+                            <div class="swiper-slide" style="background-image:url('{{ computers.img4 }}')"></div>
+s
+                        </div>
+                    </div>
+                </div>
+                <img class="erweima" src="{% static 'img/erweima.png' %}"/>
+                <p>分享<a href="#"><img class="weixin" src="{% static 'img/lianjie0.png' %}"/></a><a href="#"><img
+                        src="{% static 'img/lianjie1.png' %}"/></a><a href="#"><img
+                        src="{% static 'img/lianjie2.png' %}"/></a></p>
+            </div>
+            <div id="fangdajing_r">
+
+            </div>
+            <div class="concent_topM_bottom_r">
+                <div class="shizhong">
+
+                </div>
+                <div class="concent_topM_bottom_r_sub">
+                    <div class="jieshao">
+                        <p>{{ computers.introduce }}</p>
+                    </div>
+                    <div class="price">
+                        <em>￥</em><b>{{ computers.price }}</b>
+                    </div>
+
+                    <div class="baoyou">
+                        <span>包邮</span> 全场包邮
+                    </div>
+                    <hr/>
+                    <div class="shuliang">
+                        数量:
+                        <button class="jian">-</button>
+
+                        {% if carts %}
+                            {% for cart in carts %}
+                                {% if cart.computers.id == computers.id %}
+                                    <input class="num" type="text" value="{{ cart.number }}"/>
+                                {% endif %}
+                            {% endfor %}
+
                         {% else %}
-                            <a href="/login/">登录</a>
-                            <a href="/register/">免费注册</a>
+                            <input class="num" type="text" value="1"/>
                         {% endif %}
 
-					</div>
-					<div class="head_main_topM_right">
-						<a href="#">我的订单</a>
-						<span>|</span>
-						<a href="/shoppingCart">我的购物车</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<!--搜索栏-->
-			<div class="head_main_middle">
-				<div class="head_main_middleM">
-					<div class="head_main_middleM_left">
-						<a href="{% url 'lcc:index' %}"><img src="{% static 'img/xiaomilogo.png' %}"/></a>
+                        <button class="jia" computersid="{{ computers.id }}">+</button>
+                        <span style="font-size: 12px;color: gray"></span>
+                    </div>
+                    <div class="goumai">
+                        <button>立即购买</button>
+                        <button class="addcart" computersid="{{ computers.id }}">加入购物车</button>
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
 
-					</div>
-					<div class="head_main_middleM_right">
-						<input type="text"id="input1" placeholder="搜索商品"/><input type="button"  id="input2" value="搜索" />
-						<div class="head_main_middleM_rightM">
-							<a href="#">面霜</a><a href="#">|面膜</a><a href="#">|洁面</a><a href="#">|奶粉</a><a href="#">|纸尿裤</a><a href="#">|辅食</a><a href="#">|宝宝营养</a><a href="#">|唇部彩妆</a><a href="#">|身体护理</a><a href="#">|香氛</a>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<!--导航栏-->
-			<div class="head_main_bottom">
-				<div class="head_main_bottomM">
-					<div class="head_main_bottomM_left">
-						<span><a href="{% url 'lcc:index' %}">首页</a></span><span><a href="/#list">商品列表</a></span>
-					</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="groom">
+    <div class="groomM">
+        <div class="groomM_left">
+            <div class="groomM_left_t">
+                <h3>热销推荐</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/tuijian0.jpg' %}"/>
+                            <p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
+                            <b>$99.00</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/tuijian0.jpg' %}"/>
+                            <p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
+                            <b>$99.00</b>
+                        </a>
+                    </li>
+                </ul>
+                <h3>热销推荐</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/tuijian0.jpg' %}"/>
+                            <p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
+                            <b>$99.00</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/tuijian0.jpg' %}"/>
+                            <p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
+                            <b>$99.00</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/tuijian0.jpg' %}"/>
+                            <p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
+                            <b>$99.00</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{% static 'img/tuijian0.jpg' %}"/>
+                            <p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
+                            <b>$99.00</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="groomM_right">
+            <ul>
+                <li>商品介绍</li>
+                <li>商品评论</li>
+            </ul>
+            <div class="clear">
 
-				</div>
-			</div>
-		</div>
-		<div class="concent_top">
-			<div class="concent_topM">
+            </div>
+            <div class="groomM_right_b">
+                <img src="{% static 'img/jieshao_t.jpg' %}"/>
+                <h4>产品参数 PRODUCT PARAMETERY</h4>
+                <dl>
+                    <dt></dt>
+                    <dd>
+                        <span>保质期:</span>3年
+                    </dd>
+                    <dd>
+                        <span>规格类型：</span>正常规格
+                    </dd>
+                    <dd>
+                        <span>功效：</span><b>1.精心提炼自160年历史之久南法庄园优质芍药，质感细腻丰润，涂抹后被迅速吸收，有效滋养及保护手部肌肤；2.自然细腻、幼滑如丝的玫瑰润手霜，可以有效滋润及修护双手，细致肌肤，令双手柔软光滑，散发玫瑰细致而tj馥郁的清香。</b>
+                    </dd>
+                    <dd>
+                        <span>所属分类：</span>身体护理
+                    </dd>
+                    <dd>
+                        <span>净含量：</span>30ml*2支
+                    </dd>
+                    <dd>
+                        <span>产地：</span>法国
+                    </dd>
+                    <dd>
+                        <span>适用肤质：</span>所有肤质
+                    </dd>
+                    <dd>
+                        <span>适用性别：</span>男女通用
+                    </dd>
+                </dl>
+                <h4>产品描述 PRODUCT DESCRIPTION</h4>
+                <div class="img_jieshao">
+                </div>
+            </div>
+            <div class="criticism ">
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-				<div class="concent_topM_top">
-					<span>首页 > <b>{{ computer.title }}</b></span>
-				</div>
-				<div class="concent_topM_bottom">
-					<div class="concent_topM_bottom_l">
-						<div class="concent_topM_bottom_l_title">
-							<img src="{{ computer.img1 }}"/><span>{{ computer.title }}</span>
-						</div>
-						<div id="fangdajing">
-							<div id="fangdajing_l"></div>
-							<div class="swiper-container gallery-top">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img1 }}')"></div>
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img2 }}')"></div>
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img3 }}')"></div>
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img4 }}')"></div>
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-                                </div>
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next swiper-button-white"></div>
-                                <div class="swiper-button-prev swiper-button-white"></div>
-                            </div>
-                            <div class="swiper-container gallery-thumbs">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img1 }}')"></div>
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img2 }}')"></div>
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img3 }}')"></div>
-                                    <div class="swiper-slide" style="background-image:url('{{ computer.img4 }}')"></div>
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-                                </div>
-                            </div>
-						</div>
-						<img class="erweima" src="{% static 'img/erweima.png' %}"/>
-						<p>分享<a href="#"><img class="weixin" src="{% static 'img/lianjie0.png' %}"/></a><a href="#"><img src="{% static 'img/lianjie1.png' %}"/></a><a href="#"><img src="{% static 'img/lianjie2.png' %}"/></a></p>
-					</div>
-					<div id="fangdajing_r">
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-					</div>
-					<div class="concent_topM_bottom_r">
-						<div class="shizhong">
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-						</div>
-						<div class="concent_topM_bottom_r_sub">
-							<div class="jieshao">
-								<p>{{ computer.introduce }}</p>
-							</div>
-							<div class="price">
-								<em>￥</em><b>{{ computer.price }}</b>
-							</div>
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-							<div class="baoyou">
-								<span>包邮</span>  全场包邮
-							</div>
-							<hr />
-							<div class="shuliang">
-								数量:<button class="jian">-</button>
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-                                {% if carts %}
-                                    {% for cart in carts %}
-                                        {% if cart.computers.id == computer.id %}
-                                            <input class="num" name="num" type="text" value="{{ cart.number }}" />
-                                        {% endif %}
-                                    {% endfor %}
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-                                {% else %}
-                                    <input class="num" name="num" type="text" value="1" />
-                                {% endif %}
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-                                <button class="jia" computersid="{{ computer.id }}">+</button>
-                                <span style="font-size: 12px;color: gray"></span>
-							</div>
-							<div class="goumai">
-								<button>立即购买</button><button class="addcart" computersid="{{ computer.id }}">加入购物车</button>
-							</div>
-						</div>
-					</div>
-					<div class="clear">
+                    </div>
+                </div>
+                <div class="criticism_con">
+                    <img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
+                    <div class="criticism_con_right">
+                        <div class="criticism_con_rightT">
+                            <span>舒霖</span><span>2016-08-08 16:23</span>
+                        </div>
+                        <div class="criticism_con_rightB">
+                            <span>挺好用的就是日期太靠后了没几个月就过期了！</span>
+                        </div>
+                    </div>
+                    <div class="clear">
 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="groom">
-			<div class="groomM">
-				<div class="groomM_left">
-					<div class="groomM_left_t">
-						<h3>热销推荐</h3>
-						<ul>
-							<li>
-								<a href="#">
-									<img src="{% static 'img/tuijian0.jpg' %}"/>
-									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
-									<b>$99.00</b>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="{% static 'img/tuijian0.jpg' %}"/>
-									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
-									<b>$99.00</b>
-								</a>
-							</li>
-						</ul>
-						<h3>热销推荐</h3>
-						<ul>
-							<li>
-								<a href="#">
-									<img src="{% static 'img/tuijian0.jpg' %}"/>
-									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
-									<b>$99.00</b>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="{% static 'img/tuijian0.jpg' %}"/>
-									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
-									<b>$99.00</b>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="{% static 'img/tuijian0.jpg' %}"/>
-									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
-									<b>$99.00</b>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="{% static 'img/tuijian0.jpg' %}"/>
-									<p>L'occitane/欧舒丹 滋润护手霜套装组合（乳木果+玫瑰） 30ml*2支</p>
-									<b>$99.00</b>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="groomM_right">
-					<ul>
-						<li>商品介绍</li>
-						<li>商品评论</li>
-					</ul>
-					<div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear">
 
-					</div>
-					<div class="groomM_right_b">
-						<img src="{% static 'img/jieshao_t.jpg' %}"/>
-						<h4>产品参数   PRODUCT PARAMETERY</h4>
-						<dl>
-							<dt></dt>
-							<dd>
-								<span>保质期:</span>3年
-							</dd>
-							<dd>
-								<span>规格类型：</span>正常规格
-							</dd>
-							<dd>
-								<span>功效：</span><b>1.精心提炼自160年历史之久南法庄园优质芍药，质感细腻丰润，涂抹后被迅速吸收，有效滋养及保护手部肌肤；2.自然细腻、幼滑如丝的玫瑰润手霜，可以有效滋润及修护双手，细致肌肤，令双手柔软光滑，散发玫瑰细致而tj馥郁的清香。</b>
-							</dd>
-							<dd>
-								<span>所属分类：</span>身体护理
-							</dd>
-							<dd>
-								<span>净含量：</span>30ml*2支
-							</dd>
-							<dd>
-								<span>产地：</span>法国
-							</dd>
-							<dd>
-								<span>适用肤质：</span>所有肤质
-							</dd>
-							<dd>
-								<span>适用性别：</span>男女通用
-							</dd>
-						</dl>
-						<h4>产品描述   PRODUCT DESCRIPTION</h4>
-						<div class="img_jieshao">
-						</div>
-					</div>
-					<div class="criticism ">
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
+        </div>
+    </div>
+</div>
+<div class="foot">
+    <div class="foot_top">
+        <div class="foot_topM">
+            <div class="foot_topM_left">
+                <dl>
+                    <dt>新手指南</dt>
+                    <a href="#">
+                        <dd>购物流程</dd>
+                    </a>
+                    <a href="#">
+                        <dd>购物须知</dd>
+                    </a>
+                    <a href="#">
+                        <dd>联系客服</dd>
+                    </a>
+                    <a href="#">
+                        <dd>常见问题</dd>
+                    </a>
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <a href="#">
+                        <dd>第三方平台支付</dd>
+                    </a>
+                    <a href="#">
+                        <dd>优惠券使用</dd>
+                    </a>
+                </dl>
+                <dl>
+                    <dt>售后服务</dt>
+                    <a href="#">
+                        <dd>退款政策</dd>
+                    </a>
+                    <a href="#">
+                        <dd>退款流程</dd>
+                    </a>
+                    <a href="#">
+                        <dd>退款说明</dd>
+                    </a>
+                </dl>
+                <dl>
+                    <dt>商品配送</dt>
+                    <a href="#">
+                        <dd>运费说明</dd>
+                    </a>
+                    <a href="#">
+                        <dd>配送范围</dd>
+                    </a>
+                    <a href="#">
+                        <dd>发货说明</dd>
+                    </a>
+                    <a href="#">
+                        <dd>物流查询</dd>
+                    </a>
+                </dl>
+                <dl>
+                    <dt>品牌保证</dt>
+                    <a href="#">
+                        <dd>官方授权</dd>
+                    </a>
+                    <a href="#">
+                        <dd>海关监管</dd>
+                    </a>
+                    <a href="#">
+                        <dd>免税包邮</dd>
+                    </a>
+                    <a href="#">
+                        <dd>售后无忧</dd>
+                    </a>
+                </dl>
+                <dl>
+                    <dt>手机嗨淘全球</dt>
+                    <dd class="last_dd"><img src="{% static 'img/foot.png' %}"/></dd>
+                </dl>
+                <div class="clear">
 
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="foot_middle">
+        <div class="foot_middleM">
+            <div class="foot_middleM_left">
+                <span><img src="{% static 'img/dianhua.png' %}"/></span>
+                <span>4008-006-006</span>
+            </div>
+            <div class="foot_middleM_right">
+                <ul>
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">大事记</a></li>
+                    <li><a href="#">人才招募</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">法律说明</a></li>
+                    <li><a href="#">合作专区</a></li>
+                    <li><a href="#">友情链接</a></li>
+                </ul>
+            </div>
+            <div class="clear">
 
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-						<div class="criticism_con">
-							<img src="{% static 'img/img_list9/touxiang.jpg' %}"/>
-							<div class="criticism_con_right">
-								<div class="criticism_con_rightT">
-									<span>舒霖</span><span>2016-08-08 16:23</span>
-								</div>
-								<div class="criticism_con_rightB">
-									<span>挺好用的就是日期太靠后了没几个月就过期了！</span>
-								</div>
-							</div>
-							<div class="clear">
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clear">
-
-				</div>
-			</div>
-		</div>
-		<div class="foot">
-			<div class="foot_top">
-				<div class="foot_topM">
-					<div class="foot_topM_left">
-						<dl>
-							<dt>新手指南</dt>
-							<a href="#"><dd>购物流程</dd></a>
-							<a href="#"><dd>购物须知</dd></a>
-							<a href="#"><dd>联系客服</dd></a>
-							<a href="#"><dd>常见问题</dd></a>
-						</dl>
-						<dl>
-							<dt>支付方式</dt>
-							<a href="#"><dd>第三方平台支付</dd></a>
-							<a href="#"><dd>优惠券使用</dd></a>
-						</dl>
-						<dl>
-							<dt>售后服务</dt>
-							<a href="#"><dd>退款政策</dd></a>
-							<a href="#"><dd>退款流程</dd></a>
-							<a href="#"><dd>退款说明</dd></a>
-						</dl>
-						<dl>
-							<dt>商品配送</dt>
-							<a href="#"><dd>运费说明</dd></a>
-							<a href="#"><dd>配送范围</dd></a>
-							<a href="#"><dd>发货说明</dd></a>
-							<a href="#"><dd>物流查询</dd></a>
-						</dl>
-						<dl>
-							<dt>品牌保证</dt>
-							<a href="#"><dd>官方授权</dd></a>
-							<a href="#"><dd>海关监管</dd></a>
-							<a href="#"><dd>免税包邮</dd></a>
-							<a href="#"><dd>售后无忧</dd></a>
-						</dl>
-						<dl >
-							<dt>手机嗨淘全球</dt>
-							<dd class="last_dd" ><img src="{% static 'img/foot.png' %}"/></dd>
-						</dl>
-						<div class="clear">
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="foot_middle">
-				<div class="foot_middleM">
-					<div class="foot_middleM_left">
-						<span><img src="{% static 'img/dianhua.png' %}"/></span>
-						<span>4008-006-006</span>
-					</div>
-					<div class="foot_middleM_right">
-						<ul>
-							<li><a href="#">公司简介</a></li>
-							<li><a href="#">联系我们</a></li>
-							<li><a href="#">大事记</a></li>
-							<li><a href="#">人才招募</a></li>
-							<li><a href="#">帮助中心</a></li>
-							<li><a href="#">法律说明</a></li>
-							<li><a href="#">合作专区</a></li>
-							<li><a href="#">友情链接</a></li>
-						</ul>
-					</div>
-					<div class="clear">
-
-					</div>
-				</div>
-			</div>
-			<div class="foot_bottom">
-				<div class="foot_bottomM">
-					<div class="foot_bottomM_top">
-						<p>Copyright © 2010 - 2016, 版权所有 HITAO.TOP    湘ICP备10012668号-3  嗨淘全球网　|　<a href="#">营业执照</a></p>
-					</div>
-					<div class="foot_bottomM_right">
-						<a href="#"><img src="{% static 'img/foot0.png' %}"/></a>
-						<a href="#"><img src="{% static 'img/foot1.png' %}"/></a>
-						<a href="#"><img src="{% static 'img/foot2.png' %}"/></a>
-						<a href="#"><img src="{% static 'img/foot3.png' %}"/></a>
-						<a href="#"><img src="{% static 'img/foot4.png' %}"/></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--右边侧栏-->
-        <script src="{% static 'js/detail_loop.js' %}"></script>
-	</body>
+            </div>
+        </div>
+    </div>
+    <div class="foot_bottom">
+        <div class="foot_bottomM">
+            <div class="foot_bottomM_top">
+                <p>Copyright © 2010 - 2016, 版权所有 HITAO.TOP 湘ICP备10012668号-3 嗨淘全球网　|　<a href="#">营业执照</a></p>
+            </div>
+            <div class="foot_bottomM_right">
+                <a href="#"><img src="{% static 'img/foot0.png' %}"/></a>
+                <a href="#"><img src="{% static 'img/foot1.png' %}"/></a>
+                <a href="#"><img src="{% static 'img/foot2.png' %}"/></a>
+                <a href="#"><img src="{% static 'img/foot3.png' %}"/></a>
+                <a href="#"><img src="{% static 'img/foot4.png' %}"/></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--右边侧栏-->
+<script src="{% static 'js/detail_loop.js' %}"></script>
+</body>
 </html>

@@ -17,7 +17,7 @@ $(function () {
     })
 
     $(".addcart").click(function () {
-        var num=$(".num").val()
+        var num=$(".num").val();
         var computersid=$(this).attr('computersid');
         console.log("添加操作触发");
         data={
@@ -30,16 +30,14 @@ $(function () {
                 window.open('/login',target='_self');
             }else if(response.status==1){
                 $(".num").val(response.number);
-                $(".addcart").mousedown(function () {
-                    $(".jia").next("span").text("添加购物车成功");
-                })
 
-                $(".addcart").mouseup(function () {
-                    $(".jia").next("span").text("");
-                })
             }
         })
-        // $(".jia").next("span").text("添加购物车成功");
     })
-
+    $(".addcart").mousedown(function () {
+        $(".shuliang span").html("添加购物车成功");
+    })
+    $(".addcart").mouseup(function () {
+        $(".shuliang span").html("");
+    })
 })
