@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^checkphone/$',views.checkphone,name='checkphone'),
     url(r'^shoppingCart/$',views.shoppingCart,name='shoppingCart'),
     url(r'^addCart/$',views.addCart,name='addCart'),
+    url(r'^change/$',views.change,name='change'),
+    url(r'^allselect/$',views.allselect,name='allselect'),
 ]
 
 

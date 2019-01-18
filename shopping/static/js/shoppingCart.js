@@ -1,19 +1,71 @@
 $(function () {
-    // var number=parseInt($(".number").first().text());
-    // console.log(number+1)
-    // var number1=$(".number").eq(0).text();
-    // console.log(number1)
+    //选择商品件数
     var len=$(".number").length;
+    $(".selectnum").text(len);
+
+    // 小计
     for(var i=0;i<len;i++){
         var subtotal=parseInt($(".number").eq(i).text())*parseInt($(".price").eq(i).text());
         $(".subtotal").eq(i).text(subtotal);
     }
-
-    $(".selectnum").text(len)
+    // 商品总额
     var s=0;
     for(var i=0;i<len;i++){
         var sub=parseInt($(".subtotal").eq(i).text());
         s+=sub
     }
-    $("#s1").text(s)
+    $(".s1").text(s)
+
+    //多选
+    $("#quanxuan").click(function () {
+        var select=$(this).is(":checked");
+        console.log(select)
+        $.get('/allselect/',{'select':select},function (response) {
+            console.log(response);
+            if(response.status==0){
+                $(".danxuan").attr('checked',false);
+                $(".selectnum").text(0);
+                $(".s1").text(0)
+            }else if(response.status==1){
+                $(".danxuan").prop('checked',true);
+                var len=$(".number").length;
+                $(".selectnum").text(len);
+                var s=0;
+                for(var i=0;i<len;i++){
+                    var sub=parseInt($(".subtotal").eq(i).text());
+                    s+=sub
+                }
+                $(".s1").text(s)
+            }
+        })
+    })
+
+    //单选
+    var long=$(".danxuan").length;
+    for(var i=0;i<long;i++){
+        $(".danxuan").eq(i).click(function () {
+            var s=0;
+            for(var i=0;i<long;i++){
+                var sub=parseInt($(".subtotal").eq(i).text());
+                if($(".danxuan").eq(i).is(":checked")){
+                   s+=sub
+                }
+            }
+            $(".s1").text(s)
+            $that=$(this);
+            var computersid=$that.val();
+            $.get('/change/',{'computersid':computersid},function (response) {
+                console.log(response)
+                if(response.status==0){
+                    $that.attr('checked',false);
+                    $("#quanxuan").attr('checked',false);
+                }else if(response.status==1){
+                    $that.attr('checked',true);
+                }
+            })
+        })
+    }
+
+
+
 })

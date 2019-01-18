@@ -27,11 +27,19 @@ $(function () {
         $.get('/addCart/',data,function (response) {
             console.log(response);
             if(response.status==0){
-                window.open('/login',target='_self')
+                window.open('/login',target='_self');
             }else if(response.status==1){
-                $(".num").val(response.number)
+                $(".num").val(response.number);
+                $(".addcart").mousedown(function () {
+                    $(".jia").next("span").text("添加购物车成功");
+                })
+
+                $(".addcart").mouseup(function () {
+                    $(".jia").next("span").text("");
+                })
             }
         })
+        // $(".jia").next("span").text("添加购物车成功");
     })
 
 })

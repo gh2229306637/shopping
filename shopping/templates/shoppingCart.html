@@ -75,8 +75,9 @@
                 <div class="detailcart">
                     {% if carts %}
                         {% for cart in carts %}
+
                             <div class="onegoods">
-                                <div class="leftbox"><input type="checkbox"  id="danxuan" checked/></div>
+                                <div class="leftbox"><input type="checkbox"  class="danxuan" value="{{ cart.computers.id }}" checked/></div>
                                 <div class="product">
                                     <div class="picture"><img src="{{ cart.computers.img1 }}" alt=""></div>
                                     <div class="infomation"><p>{{ cart.computers.title }}</p></div>
@@ -86,6 +87,7 @@
                                 <div class="subtotal"></div>
                                 <div class="options"><p>删除</p></div>
                             </div>
+
                         {% endfor %}
                     {% else %}
                         <p>购物车空空如也，快去选购商品吧亲！<a href="/#list">去选购</a></p>
@@ -101,7 +103,7 @@
 					<div class="wareM6_right">
 						<button>去结算</button>
 						<div class="wareM6_right_p">
-							<p>已选<span class="selectnum"></span>件商品，合计（不含运费及税费）<em>￥</em><span id="s1"></span></p>
+							<p>已选<span class="selectnum"></span>件商品，合计（不含运费及税费）<em>￥</em><span class="s1"></span></p>
 						</div>
 						<div class="clear">
 							

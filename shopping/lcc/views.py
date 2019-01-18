@@ -136,3 +136,41 @@ def addCart(request):
             return JsonResponse(info)
     else:
         return JsonResponse({'info':'请登录后操作','status':0})
+
+
+def change(request):
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    computersid = request.GET.get('computersid')
+    computers = Computers.objects.get(id=computersid)
+    cart = Cart.objects.filter(user=user).filter(computers=computers).first()
+    cart.isselect = not cart.isselect
+    cart.save()
+    if cart.isselect == False:
+        status = 0
+    else:
+        status = 1
+    return JsonResponse({'status':status,'info':'取反成功'})
+
+
+def allselect(request):
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user_id=user.id)
+    select = request.GET.get('select')
+    for cart in carts:
+        if select == 'true':
+            cart.isselect = True
+            cart.save()
+            data = {
+                'info':'全选成功',
+                'status':1
+            }
+        else:
+            cart.isselect = False
+            cart.save()
+            data = {
+                'info':'反选成功',
+                'status':0
+            }
+    return JsonResponse(data)
