@@ -6,6 +6,7 @@ import time
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpRequest,JsonResponse
 
+from lcc.alipay import alipay
 from lcc.models import User, Wheel, Computers, Cart
 
 
@@ -131,7 +132,7 @@ def addCart(request):
             cart = Cart()
             cart.user = user
             cart.computers = computers
-            cart.number = 1
+            cart.number = request.GET.get('num')
             cart.save()
             info={'info':'{}-添加购物车操作成功'.format(computers.title),'status':1,'number':cart.number}
             return JsonResponse(info)
@@ -189,7 +190,57 @@ def delgoods(request):
 
 
 def orderdetail(request):
+    identifier = random.sample(range(100000,999999),6)
     token = request.session.get('token')
     user = User.objects.get(token=token)
     carts = Cart.objects.filter(user=user)
-    return render(request, 'orderdetail.html', {'user': user, 'carts': carts})
+    return render(request, 'orderdetail.html', {'user': user, 'carts': carts,'identifier':identifier})
+
+
+def appnotify(request):
+    print("支付完成(服务端)")
+    return JsonResponse({'masg':'success'})
+
+
+def returnview(request):
+    return redirect('lcc:index')
+
+
+def pay(request):
+    identifier = request.GET.get('identifier')
+    to = request.GET.get('to')
+    alipayurl = alipay.direct_pay(
+        subject='小米电脑雷布斯限量版',
+        out_trade_no=identifier,
+        total_amount=to,
+        return_url='http://39.96.193.139/returnview/'
+    )
+    alipayurl = 'https://openapi.alipaydev.com/gateway.do?{data}'.format(data=alipayurl)
+    return JsonResponse({'alipayurl':alipayurl})
+
+
+def buynow(request):
+    token = request.session.get('token')
+
+    if token:
+        user = User.objects.get(token=token)
+        computersid = request.GET.get('computersid')
+        computers = Computers.objects.get(id=computersid)
+        carts = Cart.objects.filter(user=user).filter(computers=computers)
+
+        if carts.exists():
+            cart = carts.first()
+            cart.number = request.GET.get('num')
+            cart.save()
+            info = {'info': '{}-立即购买操作成功'.format(computers.title), 'status': 1, 'number': cart.number}
+            return JsonResponse(info)
+        else:
+            cart = Cart()
+            cart.user = user
+            cart.computers = computers
+            cart.number = request.GET.get('num')
+            cart.save()
+            info={'info':'{}-立即购买操作成功'.format(computers.title),'status':1,'number':cart.number}
+            return JsonResponse(info)
+    else:
+        return JsonResponse({'info':'请登录后操作','status':0})

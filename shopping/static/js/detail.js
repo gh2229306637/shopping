@@ -30,7 +30,7 @@ $(function () {
                 window.open('/login',target='_self');
             }else if(response.status==1){
                 $(".num").val(response.number);
-
+                window.open('/shoppingCart',target='_self');
             }
         })
     })
@@ -39,5 +39,25 @@ $(function () {
     })
     $(".addcart").mouseup(function () {
         $(".shuliang span").html("");
+    })
+
+    //立即购买
+    $("#buynow").click(function () {
+        var num=$(".num").val();
+        var computersid=$(this).attr('computersid');
+        console.log("添加操作触发");
+        data={
+            'computersid':computersid,
+            'num':num
+        }
+        $.get('/buynow/',data,function (response) {
+            console.log(response);
+            if(response.status==0){
+                window.open('/login',target='_self');
+            }else if(response.status==1){
+                $(".num").val(response.number);
+                window.open('/orderdetail',target='_self');
+            }
+        })
     })
 })

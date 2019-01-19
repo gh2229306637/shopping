@@ -14,6 +14,10 @@ urlpatterns = [
     url(r'^allselect/$',views.allselect,name='allselect'),
     url(r'^delgoods/$',views.delgoods,name='delgoods'),
     url(r'^orderdetail/$',views.orderdetail,name='orderdetail'),
+    url(r'^appnotify/$',views.appnotify,name='appnotify'),
+    url(r'^returnview/$',views.returnview,name='returnview'),
+    url(r'^pay/$',views.pay,name='pay'),
+    url(r'^buynow/$',views.buynow,name='buynow'),
 ]
 
 

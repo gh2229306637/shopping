@@ -8,7 +8,7 @@
 		<script src="{% static 'js/jquery-1.12.0.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/basic.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/shoppingCart.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/orderdetail.js' %}" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/shoppingCart.css' %}"/>
 	</head>
@@ -94,7 +94,7 @@
 				<div class="wareM6">
 
 					<div class="wareM6_right">
-						<div class="btn"><a href="#"><button>去付款</button></a></div>
+						<div class="btn"><button id="pay" identifier="{{ identifier }}">去付款</button></div>
 						<div class="wareM6_right_p">
 							<p>合计（不含运费及税费）<em>￥</em><span class="s1"></span></p>
 						</div>
