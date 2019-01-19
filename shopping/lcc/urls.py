@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^change/$',views.change,name='change'),
     url(r'^allselect/$',views.allselect,name='allselect'),
     url(r'^delgoods/$',views.delgoods,name='delgoods'),
+    url(r'^orderdetail/$',views.orderdetail,name='orderdetail'),
 ]
 
 

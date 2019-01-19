@@ -186,3 +186,10 @@ def delgoods(request):
     cart.number = 1
     cart.save()
     return JsonResponse({'info':'删除成功','status':1})
+
+
+def orderdetail(request):
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user=user)
+    return render(request, 'orderdetail.html', {'user': user, 'carts': carts})
