@@ -184,8 +184,8 @@ def delgoods(request):
     computersid = request.GET.get('computersid')
     computers = Computers.objects.get(id=computersid)
     cart = Cart.objects.filter(user=user).filter(computers=computers).first()
-    cart.number = 1
-    cart.save()
+    cart.delete()
+    # cart.save()
     return JsonResponse({'info':'删除成功','status':1})
 
 

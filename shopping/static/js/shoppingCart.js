@@ -78,7 +78,19 @@ $(function () {
             $.get('/delgoods/',{'computersid':computersid},function (response) {
                 console.log(response)
                 if(response.status==1){
+                    $(".danxuan").eq(n).attr('checked',false)
                     $(".onegoods").eq(n).hide();
+                    var m=0;
+                    var s=0;
+                    for(var i=0;i<l;i++){
+                        var sub=parseInt($(".subtotal").eq(i).text());
+                        if($(".danxuan").eq(i).is(":checked")){
+                            m+=1;
+                           s+=sub;
+                        }
+                    }
+                    $(".s1").text(s);
+                    $(".selectnum").text(m);
                 }
             })
         })
